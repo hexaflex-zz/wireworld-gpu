@@ -7,7 +7,7 @@ import (
 	math "github.com/hexaflex/glmath"
 )
 
-// Zoom limits for the tilemap.
+// Zoom limits for the simulation display.
 const (
 	MinZoom     = 1
 	MaxZoom     = 100
