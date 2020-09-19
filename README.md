@@ -61,7 +61,7 @@ simulations.
   Key               | Description
  -------------------|------------------------------------
   Escape            | Close the program.
-  Q                 | Start/Stop the simulation at full speed.
+  Q                 | Start/Stop the simulation.
   E                 | Perform a single simulation step.
   W                 | Increase the simulation speed by 10x.
   S                 | Decrease the simulation speed by 10x.
