@@ -24,11 +24,9 @@ type Simulation struct {
 }
 
 // NewSimulation creates a new, empty simulation with the given dimensions.
-func NewSimulation(width, height int) (*Simulation, error) {
+func NewSimulation(size math.Vec2) (*Simulation, error) {
 	var err error
 	var s Simulation
-
-	size := math.Vec2{float32(width), float32(height)}
 
 	s.shader, err = SimulationShader.Compile()
 	if err != nil {
@@ -87,7 +85,8 @@ func LoadSimulation(file string, pal *Palette) (*Simulation, error) {
 	}
 
 	b := img.Bounds()
-	sim, err := NewSimulation(b.Dx(), b.Dy())
+	size := math.Vec2{float32(b.Dx()), float32(b.Dy())}
+	sim, err := NewSimulation(size)
 	if err != nil {
 		return nil, err
 	}
