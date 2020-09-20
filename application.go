@@ -184,7 +184,7 @@ func (a *Application) keyCallback(window *glfw.Window, key glfw.Key, scancode in
 	case glfw.KeyF2:
 		a.loadState()
 	case glfw.KeyF5:
-		a.simulation, _ = LoadSimulation(a.config.Input, &a.config.Palette)
+		a.reload()
 	case glfw.KeyF11:
 		w, h := a.window.GetFramebufferSize()
 		a.setWindowMode(w, h, !a.config.Fullscreen)
@@ -341,6 +341,18 @@ func (a *Application) updateUniformBlock() {
 	gl.BindBuffer(gl.UNIFORM_BUFFER, 0)
 }
 
+// reload reloads the original input image from disk.
+func (a *Application) reload() {
+	var err error
+
+	log.Println("reloading", a.config.Input)
+
+	a.simulation, err = LoadSimulation(a.config.Input, &a.config.Palette)
+	if err != nil {
+		log.Println("load failed:", err)
+	}
+}
+
 // saveState writes the current simulation state as a PNG file.
 func (a *Application) saveState() {
 	stamp := time.Now().UnixNano()
@@ -348,23 +360,23 @@ func (a *Application) saveState() {
 	name = strings.Replace(name, filepath.Ext(name), "", -1)
 	file := filepath.Join(dir, fmt.Sprintf("%d.%s.png", stamp, name))
 
-	log.Println("saving state file ", file)
+	log.Println("saving state file", file)
 
 	fd, err := os.Create(file)
 	if err != nil {
-		log.Printf("failed to create state file %q: %v", file, err)
+		log.Println("failed to create state:", err)
 		return
 	}
 
 	img := a.simulation.Image(&a.config.Palette)
 	if err = png.Encode(fd, img); err != nil {
-		log.Printf("failed to encode image: %v", err)
+		log.Println("failed to encode image:", err)
 		_ = fd.Close()
 		return
 	}
 
 	if err = fd.Close(); err != nil {
-		log.Printf("failed to save state: %v", err)
+		log.Println("failed to save state:", err)
 	}
 }
 
@@ -375,8 +387,8 @@ func (a *Application) loadState() {
 	// Find all files matching the input.
 	stamps := findStateFiles(dir, name)
 	if len(stamps) == 0 {
-		log.Println("no state file found; loading original", a.config.Input)
-		a.simulation, _ = LoadSimulation(a.config.Input, &a.config.Palette)
+		log.Println("no state file found")
+		a.reload()
 		return
 	}
 
@@ -392,7 +404,7 @@ func (a *Application) loadState() {
 	var err error
 	a.simulation, err = LoadSimulation(file, &a.config.Palette)
 	if err != nil {
-		log.Printf("failed to load state %q: %v", file, err)
+		log.Println("failed to load state:", err)
 	}
 }
 

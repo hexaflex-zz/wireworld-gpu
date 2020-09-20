@@ -8,7 +8,7 @@ import (
 const (
 	AppVendor  = "hexaflex"
 	AppName    = "wireworld-gpu"
-	AppVersion = "v0.0.1"
+	AppVersion = "v0.0.2"
 )
 
 // Version returns a string with version information.
