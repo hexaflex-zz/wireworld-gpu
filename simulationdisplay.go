@@ -4,7 +4,7 @@ import (
 	"image/color"
 
 	"github.com/go-gl/gl/v4.2-core/gl"
-	math "github.com/hexaflex/glmath"
+	"github.com/hexaflex/wireworld-gpu/math"
 )
 
 // Zoom limits for the simulation display.

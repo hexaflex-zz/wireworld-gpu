@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/go-gl/gl/v4.2-core/gl"
-	math "github.com/hexaflex/glmath"
+	"github.com/hexaflex/wireworld-gpu/math"
 )
 
 // SimulationState is an offscreen render target (framebuffer) which functions

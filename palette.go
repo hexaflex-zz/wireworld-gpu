@@ -4,7 +4,7 @@ import (
 	"image"
 	"image/color"
 
-	math "github.com/hexaflex/glmath"
+	"github.com/hexaflex/wireworld-gpu/math"
 )
 
 // Internal cell state values used by the simulation shader.

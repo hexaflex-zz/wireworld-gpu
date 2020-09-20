@@ -13,7 +13,7 @@ import (
 
 	"github.com/go-gl/gl/v4.2-core/gl"
 	"github.com/go-gl/glfw/v3.3/glfw"
-	math "github.com/hexaflex/glmath"
+	"github.com/hexaflex/wireworld-gpu/math"
 	"github.com/pkg/errors"
 )
 
