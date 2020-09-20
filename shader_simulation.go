@@ -1,6 +1,7 @@
 package main
 
 // SimulationShader defines shader sources for a simulation.
+// This implements the Wireworld rules.
 var SimulationShader = ShaderSource{
 	Vertex: `
 		#version 420
