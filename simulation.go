@@ -92,7 +92,7 @@ func LoadSimulation(file string, pal *Palette) (*Simulation, error) {
 	}
 
 	// Set the input buffer to the image data.
-	pix, size := pal.ToInternalFormat(img)
+	pix, size := pal.toInternalFormat(img)
 	sim.input.SetData(pix, size)
 	return sim, nil
 }

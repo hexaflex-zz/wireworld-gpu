@@ -57,9 +57,9 @@ func (p *Palette) fromInternalFormat(pix []byte, size math.Vec2) image.Image {
 	return img
 }
 
-// ToInternalFormat converts the given image to its 8bpp internal equivalent.
+// toInternalFormat converts the given image to its 8bpp internal equivalent.
 // Returns the pixel data and dimensions.
-func (p *Palette) ToInternalFormat(img image.Image) ([]byte, math.Vec2) {
+func (p *Palette) toInternalFormat(img image.Image) ([]byte, math.Vec2) {
 	b := img.Bounds()
 	out := image.NewAlpha(b)
 
